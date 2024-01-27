@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changing Background Continusly On a Button Click</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main
+        {
+            background-color: white;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        button{
+            border: none;
+            outline: 0;
+            padding: 20px 50px;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 10px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            color: antiquewhite;
+
+        }
+       
+        button:last-child{
+            background-color: tomato;
+        }
+        #start{
+            background-color: lawngreen;
+            color: rgb(49, 49, 49);
+        }
+        .heading h4{
+            font-size: 30px;
+            font-weight: 600;
+        }
+        h5{
+            text-align: center;
+            padding: 15px;
+            border: 1px  solid rgb(173, 173, 173);
+            border-radius: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    
+    <div class="main" id="main">
+        <div class="heading">
+            <h4>Click Start Button To Changing Background Color Continusly</h4>
+            <h5 id="name">MANAWWAR</h5>
+        </div>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+
+
+    </div>
+
+
+
+
+    <script>
+
+
+        const start = document.getElementById('start')
+        const stop = document.getElementById('stop')
+
+        const heading = document.querySelector('.heading h4')
+        const name = document.querySelector('#name')
+
+            const randomColor = ()=>{
+            hex = '0123456789ABCDEF';
+            color = "#"
+            // console.log(hex.length)
+            for(let i=0;i<6;i++){
+                  color+=hex[Math.floor(Math.random()*16)]
+            }   
+            return color;
+        }
+
+        
+        
+        let interval = "";
+         start.addEventListener("click",()=>{
+            heading.style.display = "none"
+            interval = setInterval(()=>{
+            const main = document.getElementById('main');
+           main.style.backgroundColor = randomColor();
+           start.style.backgroundColor = randomColor();
+           stop.style.backgroundColor = randomColor();
+           name.style.backgroundColor = randomColor();
+           start.style.color = randomColor();
+           stop.style.color = randomColor();
+           name.style.color = randomColor();
+        },1000)
+        })
+        
+        stop.addEventListener("click",()=>{
+            clearInterval(interval);
+            heading.style.display = "block";
+        })
+
+
+    </script>
+</body>
+</html>
